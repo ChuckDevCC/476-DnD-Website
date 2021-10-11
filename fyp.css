@@ -1,0 +1,58 @@
+body{
+
+background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75))
+,url(ice.jpg);
+}
+
+.fyp-box{
+  width: 650px;
+  height: 400px;
+  background: #000;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+  border-radius: 3%;
+  background: linear-gradient(rgba(0,0,100,1),rgba(0,0,0,1));
+  border-color: #003b8f;
+  border-style: solid;
+}
+
+#fyp-display{
+  color: #fff;
+}
+
+#fyp-display{
+  text-align: center;
+  font-size: 45px;
+}
+
+.fyp-box input[type="text"], input[type="password"]
+{
+  border: none;
+  border-bottom: 1px solid #003b8f;
+  background: transparent;
+  text-align: center;
+  margin-top: 5px;
+  width: 80%;
+  margin-left: 62px;
+  font-size: 25px;
+
+}
+
+.fyp-box input[type="submit"]{
+  border: none;
+  outline: none;
+  height: 40px;
+  background: #003b8f;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-top: 50px;
+  position: relative;
+  float: left;
+  clear: left;
+  left: 25%;
+  width: 50%;
+}
