@@ -33,7 +33,7 @@
 /* RACES */
 
 // 9 races from Player's Handbook
-var raceoption = ["dwarf", "elf", "halfling", "human", "dragonborn", "gnome", "half-elf", "half-orc", "tiefling"];
+var race_option = ["dwarf", "elf", "halfling", "human", "dragonborn", "gnome", "half-elf", "half-orc", "tiefling"];
 // 2 subraces for dwarves
 var sub_dwarf = ["hill", "mountain"];
 // 3 subraces for elfs
@@ -52,7 +52,7 @@ var sub_gnome = ["forest", "rock"];
 /* CLASSES */
 
 // 12 classes from Player's Handbook
-var classoption = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard", "artificer"];
+var class_option = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard", "artificer"];
 
 // WARLOCK 
 // Otherworldly Patron Options
