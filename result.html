@@ -1,52 +1,68 @@
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="utf-8">
-  <title>DnD Character Sheets</title>
-  <link rel="stylesheet" type="text/css" href="result.css">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title>DnD Character Sheets</title>
+      <link rel="stylesheet" type="text/css" href="result.css">
+      <script src="newreference.js" defer></script>
+  <body>
   <div class = "imgContainer">
-    <h1 id = "charHeader">Your Character...</h1>
-    <img src="knight.png" class = "charImage">
+      <h1 id = "charHeader">Your Character...</h1>
+        <img src="knight.png" class = "charImage">
   </div>
+<div class="personUpperContainer">
+      <h4 id = "Class">Fighter</h4>
+      <h4 id = "Specialty">Champion</h4>
+      <h4 id = "Race" >Human</h4>
 
-  <div class="personUpperContainer">
-    <h4 id = "Class">Fighter</h4>
-    <h4 id = "Specialty">Champion</h4>
-    <h4 id = "Race" >Human</h4>
 
-
-    <h4 id = "nameIdentifier">Name:</h4>
-    <h4 id = "firstName">Charles</h4>
-    <h4 id = "lastName" >Steinhart</h4>
-  </div>
+      <h4 id = "nameIdentifier">Name:</h4>
+      <h4 id = "firstName">Charles</h4>
+      <h4 id = "lastName" >Steinhart</h4>
+</div>
   <div id="statwrapper">
     <h1 id="statHeader">Your Stats...</h1>
   </div>
-
-  <div class="SDC">
-    <h4 id="str">Strength</h4>
-    <h4 id="dex">Dexterity</h4>
-    <h4 id="con">Constitution</h4>
-
-    <h4 id="str-n">18</h4>
-    <h4 id="dex-n">10</h4>
-    <h4 id="con-n">16</h4>
+  <div class="hpContainer">
+    <h4 id = "hp">Hit Points</h4>
+    <h4 id="hp-n">5</h4>
   </div>
+    <div class="SDC">
+      <h4 id="str">Strength</h4>
+      <h4 id="dex">Dexterity</h4>
+      <h4 id="con">Constitution</h4>
 
-  <div class="IWC">
-    <h4 id="int">Intelligence</h4>
-    <h4 id="wis">Wisdom</h4>
-    <h4 id="cha">Charisma</h4>
+      <h4 id="str-n">18</h4>
+      <h4 id="dex-n">10</h4>
+      <h4 id="con-n">16</h4>
+    </div>
 
-    <h4 id="int-n">10</h4>
-    <h4 id="wis-n">10</h4>
-    <h4 id="cha-n">15</h4>
-  </div>
+    <div class="IWC">
+      <h4 id="int">Intelligence</h4>
+      <h4 id="wis">Wisdom</h4>
+      <h4 id="cha">Charisma</h4>
 
-  <div id="storywrapper">
-    <h1 id="storyHeader">Your Story...</h1>
-  </div>
+      <h4 id="int-n">10</h4>
+      <h4 id="wis-n">10</h4>
+      <h4 id="cha-n">15</h4>
+    </div>
 
-</body>
+    <div class="Your Magical Abilities..."></div>
+
+    <div id="storywrapper">
+      <h1 id="storyHeader">Your Story...</h1>
+      <!-- Temporarily commented out as it doesn't load on page.
+      <div id="storyInfo">
+        <p id="charback">character</p>
+        <h4>Languages Known:</h4>
+        <p id="language">languages</p>
+        <h4>Reason for Picking Class:</h4>
+        <p id="classback">class</p>
+      </div>
+    -->
+    </div>
+    <div class="center">
+      <button class="button button1" onClick="generateCharacter()">Randomize Character</button>
+      <button class="button button2">Save Character</button>
+    </div>
+  </body>
 </html>

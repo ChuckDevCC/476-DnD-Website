@@ -1,226 +1,267 @@
 body{
-  background: linear-gradient(rgba(0,0,0,1),rgba(180,0,0,0.8));
-}
+    background: linear-gradient(rgba(0,0,0,1),rgba(180,0,0,0.8));
+  }
+  
+  #charHeader{
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    font-size: 50px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  
+  .charImage{
+    grid-column: 3 / span 1;
+    grid-row: 2;
+    text-align: center;
+    margin: auto;
+    width: 30%;
+  }
+  
+  .imgContainer{
+    display: grid;
+    grid-template-columns: auto 500px 500px 500px auto;
+    grid-template-rows: 100px 100px;
+  }
+  
+  .personUpperContainer{
+    display: grid;
+    grid-template-columns: auto 500px 500px 500px auto;
+    grid-template-rows: 200px 200px;
+  }
+  
+  
+  
+  #Class{
+    grid-column: 2 / span 1;
+    grid-row: 1;
+    font-size: 50px;
+    color: #ffff;
+    text-align: center;
+  
+  
+  }
+  
+  #Specialty{
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    font-size: 50px;
+    color:#ffff;
+    text-align: center;
+  
+  
+  }
+  
+  #Race{
+    grid-column: 4 / span 1;
+    grid-row: 1;
+    font-size: 50px;
+    color:#ffff;
+    text-align: center;
+  
+  
+  }
+  
+  #nameIdentifier{
+    grid-column: 2 / span 1;
+    grid-row: 2;
+    font-size: 50px;
+    color:#ffff;
+    text-align: center;
+  }
+  
+  #firstName{
+    grid-column: 3 / span 1;
+    grid-row: 2;
+    font-size: 50px;
+    color:#ffff;
+    text-align: center;
+  }
+  
+  #lastName{
+    grid-column: 4 / span 1;
+    grid-row: 2;
+    font-size: 50px;
+    color:#ffff;
+    text-align: center;
+  }
+  
+  #statwrapper{
+    display: grid;
+    grid-template-columns: auto 500px 500px 500px auto;
+    grid-template-rows: 200px;
+  }
+  
+  #statHeader{
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    text-align: center;
+    font-size: 50px;
+    color: #ffff;
+  }
+  
+  .SDC{
+    display: grid;
+    grid-template-columns: auto 500px 500px 500px auto;
+    grid-template-rows: 100px 50px 50px;
+  }
 
-#charHeader{
-  grid-column: 3 / span 1;
-  grid-row: 1;
-  font-size: 50px;
-  color: #ffff;
-  text-align: center;
-}
+  #hp{
+    grid-column: 2 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
 
+  #hp-n{
+    grid-column: 2 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
 
-.charImage{
-  grid-column: 3 / span 1;
-  grid-row: 2;
-  text-align: center;
-  margin: auto;
-  width: 30%;
-}
+  #str{
+    grid-column: 2 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #dex{
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #con{
+    grid-column: 4 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  
+  #str-n{
+    grid-column: 2 / span 1;
+    grid-row: 2;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #dex-n{
+    grid-column: 3 / span 1;
+    grid-row: 2;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #con-n{
+    grid-column: 4 / span 1;
+    grid-row: 2;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  .IWC{
+    display: grid;
+    grid-template-columns: auto 500px 500px 500px auto;
+    grid-template-rows: 100px 50px 50px;
+  }
+  
+  #int{
+    grid-column: 2 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #wis{
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #cha{
+    grid-column: 4 / span 1;
+    grid-row: 1;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  
+  #int-n{
+    grid-column: 2 / span 1;
+    grid-row: 2;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #wis-n{
+    grid-column: 3 / span 1;
+    grid-row: 2;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #cha-n{
+    grid-column: 4 / span 1;
+    grid-row: 2;
+    font-size: 30px;
+    color: #ffff;
+    text-align: center;
+  }
+  
+  #storywrapper{
+    display: grid;
+    grid-template-columns: auto 500px 500px 500px auto;
+    grid-template-rows: 200px;
+  }
+  
+  #storyHeader{
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    text-align: center;
+    font-size: 50px;
+    color: #ffff;
+  }
 
-.imgContainer{
-  display: grid;
-  grid-template-columns: auto 500px 500px 500px auto;
-  grid-template-rows: 100px 100px;
-}
+  #storyInfo {
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    text-align: center;
+    font-size: 50px;
+    color: #ffff;
+  }
 
-.personUpperContainer{
-  display: grid;
-  grid-template-columns: auto 500px 500px 500px auto;
-  grid-template-rows: 200px 200px;
-}
+  .center {
+    text-align: center;
+  }
 
+  .button {
+    background-color: 	#4c1130;
+    color: white;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 30px;
+    font-family: sans-sans-serif;
+  }
 
-
-#Class{
-  grid-column: 2 / span 1;
-  grid-row: 1;
-  font-size: 50px;
-  color: #ffff;
-  text-align: center;
-
-
-}
-
-#Specialty{
-  grid-column: 3 / span 1;
-  grid-row: 1;
-  font-size: 50px;
-  color:#ffff;
-  text-align: center;
-
-
-}
-
-#Race{
-  grid-column: 4 / span 1;
-  grid-row: 1;
-  font-size: 50px;
-  color:#ffff;
-  text-align: center;
-
-
-}
-
-#nameIdentifier{
-  grid-column: 2 / span 1;
-  grid-row: 2;
-  font-size: 50px;
-  color:#ffff;
-  text-align: center;
-}
-
-#firstName{
-  grid-column: 3 / span 1;
-  grid-row: 2;
-  font-size: 50px;
-  color:#ffff;
-  text-align: center;
-}
-
-#lastName{
-  grid-column: 4 / span 1;
-  grid-row: 2;
-  font-size: 50px;
-  color:#ffff;
-  text-align: center;
-}
-
-#statwrapper{
-  display: grid;
-  grid-template-columns: auto 500px 500px 500px auto;
-  grid-template-rows: 200px;
-}
-
-#statHeader{
-  grid-column: 3 / span 1;
-  grid-row: 1;
-  text-align: center;
-  font-size: 50px;
-  color: #ffff;
-}
-
-.SDC{
-  display: grid;
-  grid-template-columns: auto 500px 500px 500px auto;
-  grid-template-rows: 100px 50px 50px;
-}
-
-#str{
-  grid-column: 2 / span 1;
-  grid-row: 1;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#dex{
-  grid-column: 3 / span 1;
-  grid-row: 1;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#con{
-  grid-column: 4 / span 1;
-  grid-row: 1;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-
-#str-n{
-  grid-column: 2 / span 1;
-  grid-row: 2;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#dex-n{
-  grid-column: 3 / span 1;
-  grid-row: 2;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#con-n{
-  grid-column: 4 / span 1;
-  grid-row: 2;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-.IWC{
-  display: grid;
-  grid-template-columns: auto 500px 500px 500px auto;
-  grid-template-rows: 100px 50px 50px;
-}
-
-#int{
-  grid-column: 2 / span 1;
-  grid-row: 1;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#wis{
-  grid-column: 3 / span 1;
-  grid-row: 1;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#cha{
-  grid-column: 4 / span 1;
-  grid-row: 1;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-
-#int-n{
-  grid-column: 2 / span 1;
-  grid-row: 2;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#wis-n{
-  grid-column: 3 / span 1;
-  grid-row: 2;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#cha-n{
-  grid-column: 4 / span 1;
-  grid-row: 2;
-  font-size: 30px;
-  color: #ffff;
-  text-align: center;
-}
-
-#storywrapper{
-  display: grid;
-  grid-template-columns: auto 500px 500px 500px auto;
-  grid-template-rows: 200px;
-}
-
-#storyHeader{
-  grid-column: 3 / span 1;
-  grid-row: 1;
-  text-align: center;
-  font-size: 50px;
-  color: #ffff;
-}
+  .button:hover {
+    background-color: 	#7a0028;
+  }
