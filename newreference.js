@@ -382,12 +382,12 @@ function generateCharacter() {
     var character_class_specialty = ""; 
     var spell_cantrip = "";
     var spell_1st = ""; 
-    var spell_cantrip_amount = 0;
-    var spell_1st_amount = 0;
+    var spell_cantrip_amount = 0; // this will store how many cantrips a character knows
+    var spell_1st_amount = 0; // this will store how many 1st level spells a character knows
     var character_size = ""; 
     var character_magic_user = false;
     var character_alignment = ""; // this will store the character's alignment
-    var hitpoints = 0;
+    var hitpoints = 0; // temporarily is set to 0
     var character_speed = 0; // this will store the character's speed
     var character_size = ""; // this will store the character's size
     var character_uniquefeatures = ""; // this will store any neat abilities the character has (ex. nightvision)
@@ -404,9 +404,15 @@ function generateCharacter() {
     var intmodifier = 0;
     var wismodifier = 0;
     var charmodifier = 0;
+    var hpbonus = 0; // determines if player has a bonus to hp (ex. some races have bonus hp)
+
+    // TEMPORARY VARIABLES
+    var x;
+    var y;
+    var z;
 
     // First, let's generate the character's race
-    var x = Math.floor(Math.random() * race_option.length);
+    x = Math.floor(Math.random() * race_option.length);
     var character_race = race_option[x];
     document.getElementById("Race").innerHTML = character_race + character_subrace;
     
@@ -452,30 +458,23 @@ function generateCharacter() {
    x = Math.floor(Math.random() * background.length);
    character_background = background[x];
 
-   /* ERROR: does not generate anything... for some reason
    // Now let's generate the reasoning for being the background they chose.
-   backgroundReasoning(character_background, character_background_story);
-   alert (character_background_story);
-   */ 
+   character_background_story = backgroundReasoning(character_background, character_background_story, x);
+   
 
    // Let's generate the character's class
     x = Math.floor(Math.random() * class_option.length);
     character_class = class_option[x];
     document.getElementById("Class").innerHTML = character_class;
 
-    /* ERROR: does not generate anything... for some reason
-    // Now, we shall select the reasoning for why the became who they are.
-    classReasoning(character_class, character_background_story);
-    alert(character_background_story);
-    */
+    // Why did the character pick their class? Let's find out.
+    character_class_story = classReasoning(character_class, character_background_story, x);
 
    // Now that we know the player's class, we need to determine if they have spells at level 1.
     if (character_class == "artificer" || character_class == "bard" || character_class == "cleric" || character_class == "druid" || character_class == "paladin" || character_class == "ranger" || character_class == "sorcerer" || character_class == "warlock" || character_class == "wizard") {
         character_magic_user = true;
     }
      
-
-
     // If the player is a magic user, we must fill out what spells they know. 
     if (character_magic_user == true) {
         if (character_level == 1) { // only a few of the magic user classes have spells at level 1
@@ -513,51 +512,385 @@ function generateCharacter() {
         firstGeneration(character_class, spell_1st_amount, spell_1st);
         */
         }
+        if (character_class == "artificer") {
+            for (let i = 0; i < spell_cantrip_amount; i++) {
+                x = Math.floor(Math.random() * artificer_cantrip.length);
+                y = artificer_cantrip[x];
+                spell_cantrip = spell_cantrip + y + " ";
+            }
+        }
+        else if (character_class == "bard") {
+            for (let i = 0; i < spell_cantrip_amount; i++) {
+                x = Math.floor(Math.random() * bard_cantrip.length);
+                y = bard_cantrip[x];
+                spell_cantrip = spell_cantrip + y + " ";
+            }
+        }
+        else if (character_class == "cleric") {
+            for (let i = 0; i < spell_cantrip_amount; i++) {
+                x = Math.floor(Math.random() * cleric_cantrip.length);
+                y = cleric_cantrip[x];
+                spell_cantrip = spell_cantrip + y + " ";
+            }
+        }
+        else if (character_class == "druid") {
+            for (let i = 0; i < druid_cantrip; i++) {
+                x = Math.floor(Math.random() * druid_cantrip.length);
+                y = druid_cantrip[x];
+                spell_cantrip = spell_cantrip + y + " ";
+            }
+        }
+        else if (character_class == "sorcerer") {
+            for (let i = 0; i < spell_cantrip_amount; i++) {
+                x = Math.floor(Math.random() * sorcerer_cantrip.length);
+                y = sorcerer_cantrip[x];
+                spell_cantrip = spell_cantrip + y + " ";
+            }
+        }
+        else if (character_class == "warlock") {
+            for (let i = 0; i < spell_cantrip_amount; i++) {
+                x = Math.floor(Math.random() * warlock_cantrip.length);
+                y = warlock_cantrip[x];
+                spell_cantrip = spell_cantrip + y + " ";
+            }
+        }
+        else if (character_class == "wizard") {
+            for (let i = 0; i < spell_cantrip_amount; i++) {
+                x = Math.floor(Math.random() * wizard_cantrip.length);
+                y = wizard_cantrip[x];
+                spell_cantrip = spell_cantrip + y + " ";
+            }
+        }
     }
 
     // Now, let's generate the character name (and other racial-based traits) based off of the races
-    /* ERROR: function calling don't work
     if (character_race == "dwarf") {
-        dwarfGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+         // Let's set the default variables that occur, regardless of subrace or gender
+        character_uniquefeatures = character_uniquefeatures + "darkvision " + "dwarven resilience " + "dwarven combat training " + "stonecunning ";
+        character_languages = character_languages + " common" + " dwarven";
+        constitution = constitution + 2; // dwarves have a bonus to constitution of 2
+        character_speed = 25;
+        character_size = "Medium";
+
+        // We use the gender to determine the dwarven name... 
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_dwarf_male.length);
+            character_name_first = name_dwarf_male[x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_dwarf_female.length);
+            character_name_first = name_dwarf_female[x];
+        }
+        // Now, we determine the last name
+        x = Math.floor(Math.random() * name_dwarf_clan.length);
+        character_name_last = name_dwarf_clan[x];
+
+        // Dwarves have a subrace! Let's generate that.
+        x = Math.floor(Math.random() * sub_dwarf.length);
+        character_subrace = sub_dwarf[x];
+
+        if (character_subrace == "hill") {
+            character_uniquefeatures = character_uniquefeatures + "dwarven toughness "
+            hpbonus = 1; // +1 to hp
+        }
+        else if (character_subrace == "mountain") {
+            strength = strength + 2;
+            character_uniquefeatures = character_uniquefeatures + "dwarven armor training ";
+        }
     }
     else if (character_race == "elf") {
-        elfGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+        // ERROR: drows know the "dancing lights" cantrip.... help with that
+        character_uniquefeatures = character_uniquefeatures + "darkvision " + "keen senses " + "fey ancestry " + "trance ";
+        character_languages = character_languages + "common " + "elven ";
+        dexterity = dexterity + 2; // elves have a bonus to dexterity of 2
+        character_speed = 30;
+        character_size = "Medium";
+        // We use the gender to determine the elven name... 
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_elf_male.length);
+            character_name_first = name_elf_male[x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_elf_family.length);
+            character_name_first = name_elf_female[x];
+        }
+        // Now, we determine the last name
+        x = Math.floor(Math.random() * name_elf_family.length);
+        character_name_last = name_elf_family[x];
+
+        // Elves have a subrace! Let's generate that.
+        var x = Math.floor(Math.random() * sub_elf.length);
+        var character_subrace = sub_elf[x];
+
+        if (character_subrace == "high") {
+            character_uniquefeatures = character_uniquefeatures + "elven weapon training "
+            intelligence = intelligence + 1;
+            spell_cantrip_amount = spell_cantrip_amount + 1;
+            // High Elves know an extra language 
+            z = Math.floor(Math.random * 1);
+            if (z == 1) { // standard language generation
+                x =  Math.floor(Math.random() * language_standard.length);
+                y = language_standard[x]; 
+                character_languages = character_languages + y + " ";
+            }
+            else { // exotic language generation
+                x =  Math.floor(Math.random() * language_exotic.length);
+                y = language_exotic[x]; 
+                character_languages = character_languages + y + " ";
+            }
+        }
+        else if (character_subrace == "wood") {
+            wisdom = strength + 1;
+            character_uniquefeatures = character_uniquefeatures + "elven weapon training  ";
+            character_speed = 35;
+        }
+        else if (character_subrace == "drow") {
+            charisma = charisma + 1;
+            character_uniquefeatures = character_uniquefeatures + "superior darkvision " + "sunlight sensitivity " + "drow weapon training ";
+        }
     }
     else if (character_race == "halfling") {
-        halflingGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+       // Let's set the default variables that occur, regardless of subrace or gender
+        character_uniquefeatures = character_uniquefeatures + "lucky " + "brave " + "halfling nimbleness ";
+        character_languages = character_languages + "common " + "halfling ";
+        dexterity = dexterity + 2; // halflings have a bonus to dexterity of 2
+        character_speed = 25;
+        character_size = "Small";
+
+        // We use the gender to determine the halfling name... 
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_halfling_male.length);
+            character_name_first = name_halfling_male[x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_halfling_female.length);
+            character_name_first = name_halfling_female[x];
+        }
+        // Now, we determine the last name
+        x = Math.floor(Math.random() * name_halfling_family.length);
+        character_name_last = name_halfling_family[x];
+
+        // Halflings have a subrace! Let's generate that.
+        x = Math.floor(Math.random() * sub_halfling.length);
+        character_subrace = sub_halfling[x];
+
+        if (character_subrace == "lightfoot") {
+            character_uniquefeatures = character_uniquefeatures + "naturally stealthy "
+            charisma = charisma + 1;
+        }
+        else if (character_subrace == "stout") {
+            constitution = constitution + 1;
+            character_uniquefeatures = character_uniquefeatures + "stout resilience ";    
+        }
     }
     else if (character_race == "human") {
-        humanGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+        // Let's set the default variables that occur, regardless of subrace or gender
+        character_languages = character_languages + "common ";
+        // Humans also know one bonus language, let's create a random one from the standard list
+        z = Math.floor(Math.random * 1);
+        if (z == 0) { // standard language generation
+            x =  Math.floor(Math.random() * language_standard.length);
+            y = language_standard[x]; 
+            character_languages = character_languages + y + " ";
+        }
+        else { // exotic language generation
+            x =  Math.floor(Math.random() * language_exotic.length);
+            y = language_exotic[x]; 
+            character_languages = character_languages + y + " ";
+        }
+
+        // Humans have an ability increase of 1 for all stats
+        constitution = constitution + 1;
+        dexterity = dexterity + 1;
+        strength = strength + 1;
+        intelligence = intelligence + 1;
+        wisdom = wisdom + 1;
+        charisma = charisma + 1;
+        character_speed = 30;
+        character_size = "Medium";
+
+        // We use the gender to determine the human name... 
+        // But first, we must determine what subrace we want to go with.
+        y = Math.floor(Math.random() * 15); // generates number between 0-15 
+        character_subrace = sub_human[y];
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_human_male[x][y].length);
+            character_name_first = name_human_male[y][x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_human_female[x][y].length);
+            character_name_first = name_human_female[x][x];
+        }
+        // Humans do not have last names generated here.
+        character_name_last = "";
     }
     else if (character_race == "dragonborn") {
-        dragonbornGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+        // Let's set the default variables that occur, regardless of subrace or gender
+        character_uniquefeatures = character_uniquefeatures + "breath weapon " + "damage resistance  ";
+        strength = strength + 2;
+        charisma = charisma + 1;
+        character_speed = 30;
+        character_size = "Medium";
+
+        // We use the gender to determine the dragonborn name... 
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_dragonborn_male.length);
+            character_name_first = name_dragonborn_male[x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_dragonborn_female.length);
+            character_name_first = name_dragonborn_female[x];
+        }
+        // Now, we determine the last name
+        x = Math.floor(Math.random() * name_dragonborn_clan.length);
+        character_name_last = name_dragonborn_clan[x];
+
+        // Dragonborns have a subrace! Let's generate that.
+        x = Math.floor(Math.random() * sub_dragonborn.length);
+        character_subrace = sub_dragonborn[x];
     }
     else if (character_race == "gnome") {
-        gnomeGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+        // ERROR: Forest gnomes know the minor illusion cantrip
+        // Let's set the default variables that occur, regardless of subrace or gender
+        character_uniquefeatures = character_uniquefeatures + "darkvision " + "gnome cunning ";
+        character_languages = character_languages + "common " + "gnomish ";
+        intelligence = intelligence + 2; // halflings have a bonus to dexterity of 2
+        character_speed = 25;
+        character_size = "Small";
+
+        // We use the gender to determine the gnome name... 
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_gnome_male.length);
+            character_name_first = name_gnome_male[x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_gnome_female.length);
+            character_name_first = name_gnome_female[x];
+        }
+        // Now, we determine the last name
+        x = Math.floor(Math.random() * name_gnome_clan.length);
+        character_name_last = name_gnome_clan[x];
+
+        // Gnomes have a subrace! Let's generate that.
+        x = Math.floor(Math.random() * sub_gnome.length);
+        character_subrace = sub_gnome[x];
+
+        if (character_subrace == "forest") {
+            character_uniquefeatures = character_uniquefeatures + "naturally stealthy " + "speak with small animals ";
+            dexterity = dexterity + 1;
+        }
+        else if (character_subrace == "rock") {
+            constitution = constitution + 1;
+            character_uniquefeatures = character_uniquefeatures + "artificer's lore " + "tinker ";
+        }
     }
     else if (character_race == "half-elf") {
-        halfElfGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+       // Let's set the default variables that occur, regardless of subrace or gender
+        character_uniquefeatures = character_uniquefeatures + "darkvision " + "fey ancestry " + "skill versaitility ";
+        character_languages = character_languages + "common " + "elvish ";
+        character_speed = 30;
+        character_size = "Medium";
+
+        // Half-elves know a language of their choice...
+        z = Math.floor(Math.random * 1);
+        if (z == 1) { // standard language generation
+            x =  Math.floor(Math.random() * language_standard.length);
+            y = language_standard[x]; 
+            character_languages = character_languages + y + " ";
+        }
+        else { // exotic language generation
+            x =  Math.floor(Math.random() * language_exotic.length);
+            y = language_exotic[x]; 
+            character_languages = character_languages + y + " ";
+        }
+
+        // We use the gender to determine the half-elves name... 
+        z = Math.floor(Math.random() * 1); 
+        if (z == 0) { // generate a human name
+            y = Math.floor(Math.random() * 15); // generates number between 0-15 
+            character_subrace = sub_human[y];
+            if (character_gender == "male") {
+                x = Math.floor(Math.random() * name_human_male[x][y].length);
+                character_name_first = name_human_male[y][x];
+            }
+            else if (character_gender == "female") {
+                x = Math.floor(Math.random() * name_human_female[x][y].length);
+                character_name_first = name_human_female[x][x];
+            }
+        // Humans do not have last names generated here.
+        character_name_last = "";
+        }
+        else { // generate an elven name
+            if (character_gender == "male") {
+                x = Math.floor(Math.random() * name_elf_male.length);
+                character_name_first = name_elf_male[x];
+            }
+            else if (character_gender == "female") {
+                x = Math.floor(Math.random() * name_elf_family.length);
+                character_name_first = name_elf_female[x];
+            }
+            // Now, we determine the last name
+            x = Math.floor(Math.random() * name_elf_family.length);
+            character_name_last = name_elf_family[x];
+        }
     }
     else if (character_race == "half-orc") {
-        halfOrcGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+        // Let's set the default variables that occur, regardless of subrace or gender
+        character_uniquefeatures = character_uniquefeatures + "darkvision " + "menacing " + "relentless endurance " + "savage attacks";
+        character_languages = character_languages + "common " + "orc ";
+        strength = strength + 2;
+        constitution = constitution + 2;
+        character_speed = 30;
+        character_size = "Medium";
+
+        // Let's generate the name!
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_halforc_male.length);
+            character_name_first = name_halforc_male[x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_halforc_female.length);
+            character_name_first = name_halforc_female[x];
+        }
+        // Orcs do not have last names.
+        character_name_last = "";
     }
     else if (character_Race == "tiefling") {
-        tieflingGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma);
+       // Let's set the default variables that occur, regardless of subrace or gender
+        character_uniquefeatures = character_uniquefeatures + "darkvision " + "hellish resistance " + "infernal legacy ";
+        character_languages = character_languages + "common " + "infernal ";
+        charisma = charisma + 2;
+        intelligence = intelligence + 1;
+        character_speed = 30;
+        character_size = "Medium";
+
+        // Let's generate the name!
+        if (character_gender == "male") {
+            x = Math.floor(Math.random() * name_tiefling_male.length);
+            character_name_first = name_tiefling_male[x];
+        }
+        else if (character_gender == "female") {
+            x = Math.floor(Math.random() * name_tiefling_female.length);
+            character_name_first = name_tiefling_female[x];
+        }
+        // Tieflings have a virtue instead of a last name
+        x = Math.floor(Math.random() * name_tiefling_virtue.length);
+        character_name_last = name_tiefling_virtue[x];
     }
-    */
+
+    // Let's update the names
+    document.getElementById("firstName").innerHTML = character_name_first;
+    document.getElementById("lastName").innerHTML = character_name_last;
 
     // We need to figure out modifiers! 
-    /* ERROR: function calling don't work
-    modifier(strmodifier, strength);
-    modifier(dexmodifier, dexterity);
-    modifier(conmodifier, constitution);
-    modifier(intmodifier, intelligence);
-    modifier(wismodifier, wisdom);
-    modifier(charmodifier, charisma);
-    */
+    strmodifier = modifier(strmodifier, strength);
+    dexmodifier = modifier(dexmodifier, dexterity);
+    conmodifier = modifier(conmodifier, constitution);
+    intmodifier = modifier(intmodifier, intelligence);
+    wismodifier = modifier(wismodifier, wisdom);
+    charmodifier = modifier(charmodifier, charisma);
 
     // The first level hitpoints is the hit die type for the class + constitution modifier
-   /* ERROR: uncomment this out whenn we have the modifiers working
     if (character_class == "barbarian") {
         hitpoints = 12 + conmodifier;
     }
@@ -570,32 +903,36 @@ function generateCharacter() {
     else if (character_class == "sorcerer" || character_class == "wizard") {
         hitpoints = 6 + condmodifier;
     }
-    */
+    if (hpbonus != 0) {
+        hitpoints = hitpoints + hpbonus;
+    }
     // For future levels, we will use a function to generate further die rolls.
+    // Now let's print our hitpoints!
+    document.getElementById("hp-n").innerHTML = hitpoints;
 
+    // Finally, let's change the image according to the class.
+    if (character_class == "monk" || character_class == "druid") {
+        document.getElementById("charImage").src="stick.png";
+    }
+    else if (character_class == "barbarian") {
+        document.getElementById("charImage").src="axe.png";
+    }
+    else if (character_class == "cleric" || character_class == "fighter") {
+        document.getElementById("charImage").src="shield.png";
+    }
+    else if (character_class == "ranger" || character_class == "rogue") {
+        document.getElementById("charImage").src="archery.png";
+    }
+    else if (character_class == "bard") {
+        document.getElementById("charImage").src="lyre.png";
+    }
+    else if (character_class == "wizard") {
+        document.getElementById("charImage").src="book.png";
+    }
+    else if (character_class == "warlock" || character_class == "sorcerer") {
+        document.getElementById("charImage").src="magic.png";
+    }
 }
-
-/* 
-    // Just like that, we are all done! Let's print the results.
-    document.getElementById("Class").innerHTML = character_class;
-    document.getElementById("Specialty").innerHTML = character_class_specialty;
-    document.getElementById("Race").innerHTML = character_race + character_subrace;
-    document.getElementById("firstName").innerHTML = character_name_first;
-    document.getElementById("lastName").innerHTML = character_name_last;
-
-    // Stat Prints
-    document.getElementById("str-n").innerHTML = strength;
-    document.getElementById("dex-n").innerHTML = dexterity;
-    document.getElementById("con-n").innerHTML = constitution;
-    document.getElementById("int-n").innerHTML = intelligence;
-    document.getElementById("wis-n").innerHTML = wisdom;
-    document.getElementById("cha-n").innerHTML = charisma;
-
-    // Background Information / Languages
-    document.getElementById("charback").innerHTML = character_background_story;
-    document.getElementById("language").innerHTML = character_languages;
-    document.getElementById("classback").innerHTML = character_class_story;
-    */
 
 function cantripGeneration(character_class, spell_cantrip_amount, spell_cantrip) {
     if (character_class == "artificer") {
@@ -733,10 +1070,10 @@ function modifier(mod, modtype) {
     else if (modtype == 30) {
         mod = 10;
     }
+    return mod;
 } 
 
-function classReasoning(character_class, character_class_story) {
-    var x = 0;
+function classReasoning(character_class, character_class_story, x) {
     if (character_class == "barbarian") {
         x = Math.floor(Math.random() * reason_barbarian.length);
         character_class_story = reason_barbarian[x];
@@ -785,10 +1122,10 @@ function classReasoning(character_class, character_class_story) {
         x = Math.floor(Math.random() * reason_wizard.length);
         character_class_story = reason_wizard[x];
     }
+    return character_class_story;
 }
 
-function backgroundReasoning(character_background, character_background_story) {
-    var x = 0;
+function backgroundReasoning(character_background, character_background_story, x) {
     if (character_background == "acolyte") {
         x = Math.floor(Math.random() * reason_acolyte.length);
         character_background_story = reason_acolyte[x];
@@ -841,333 +1178,5 @@ function backgroundReasoning(character_background, character_background_story) {
         x = Math.floor(Math.random() * reason_urchin.length);
         character_background_story = reason_urchin[x];
     }
-}
-
-function dwarfGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "darkvision " + "dwarven resilience " + "dwarven combat training " + "stonecunning ";
-    var character_languages = character_languages + " common" + " dwarven";
-    var constitution = constitution + 2; // dwarves have a bonus to constitution of 2
-    var character_speed = 25;
-    var character_size = "Medium";
-
-    // We use the gender to determine the dwarven name... 
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_dwarf_male.length);
-        var character_name = name_dwarf_male[x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_dwarf_female.length);
-        var character_name = name_dwarf_female[x];
-    }
-    // Now, we determine the last name
-    var x = Math.floor(Math.random() * name_dwarf_clan.length);
-    var character_name_last = name_dwarf_clan[x];
-
-    // Dwarves have a subrace! Let's generate that.
-    var x = Math.floor(Math.random() * sub_dwarf.length);
-    var character_subrace = sub_dwarf[x];
-
-    if (character_subrace == "hill") {
-        var character_uniquefeatures = character_uniquefeatures + "dwarven toughness "
-        var hitpoints = hitpoints + 1;
-    }
-    else if (character_subrace == "mountain") {
-        var strength = strength + 2;
-        var character_uniquefeatures = character_uniquefeatures + "dwarven armor training ";
-    }
-}
-
-// ERROR: drows know the "dancing lights" cantrip.... help with that
-function elfGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "darkvision " + "keen senses " + "fey ancestry " + "trance ";
-    var character_languages = character_languages + "common " + "elven ";
-    var dexterity = dexterity + 2; // elves have a bonus to dexterity of 2
-    var character_speed = 30;
-    var character_size = "Medium";
-
-    // We use the gender to determine the elven name... 
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_elf_male.length);
-        var character_name = name_elf_male[x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_elf_family.length);
-        var character_name = name_elf_female[x];
-    }
-    // Now, we determine the last name
-    var x = Math.floor(Math.random() * name_elf_family.length);
-    var character_name_last = name_elf_family[x];
-
-    // Elves have a subrace! Let's generate that.
-    var x = Math.floor(Math.random() * sub_elf.length);
-    var character_subrace = sub_elf[x];
-
-    if (character_subrace == "high") {
-        var character_uniquefeatures = character_uniquefeatures + "elven weapon training "
-        var intelligence = intelligence + 1;
-        var spell_cantrip_amount = spell_cantrip_amount + 1;
-        // High Elves know an extra language 
-        var z = Math.floor(Math.random * 1);
-        if (z == 1) { // standard language generation
-            var x =  Math.floor(Math.random() * language_standard.length);
-            var y = language_standard[x]; 
-            var character_languages = character_languages + y + " ";
-        }
-        else { // exotic language generation
-            var x =  Math.floor(Math.random() * language_exotic.length);
-            var y = language_exotic[x]; 
-            var character_languages = character_languages + y + " ";
-        }
-    }
-    else if (character_subrace == "wood") {
-        var wisdom = strength + 1;
-        var character_uniquefeatures = character_uniquefeatures + "elven weapon training  ";
-        var character_speed = 35;
-    }
-    else if (character_subrace == "drow") {
-        var charisma = charisma + 1;
-        var character_uniquefeatures = character_uniquefeatures + "superior darkvision " + "sunlight sensitivity " + "drow weapon training ";
-    }
-}
-
-function halflingGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "lucky " + "brave " + "halfling nimbleness ";
-    var character_languages = character_languages + "common " + "halfling ";
-    var dexterity = dexterity + 2; // halflings have a bonus to dexterity of 2
-    var character_speed = 25;
-    var character_size = "Small";
-
-    // We use the gender to determine the halfling name... 
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_halfling_male.length);
-        var character_name = name_halfling_male[x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_halfling_female.length);
-        var character_name = name_halfling_female[x];
-    }
-    // Now, we determine the last name
-    var x = Math.floor(Math.random() * name_halfling_family.length);
-    var character_name_last = name_halfling_family[x];
-
-    // Halflings have a subrace! Let's generate that.
-    var x = Math.floor(Math.random() * sub_halfling.length);
-    var character_subrace = sub_halfling[x];
-
-    if (character_subrace == "lightfoot") {
-        var character_uniquefeatures = character_uniquefeatures + "naturally stealthy "
-        var charisma = charisma + 1;
-    }
-    else if (character_subrace == "stout") {
-        var constitution = constitution + 1;
-        var character_uniquefeatures = character_uniquefeatures + "stout resilience ";
-    
-    }
-}
-
-function humanGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_languages = character_languages + "common ";
-    // Humans also know one bonus language, let's create a random one from the standard list
-    var z = Math.floor(Math.random * 1);
-    if (z == 1) { // standard language generation
-        var x =  Math.floor(Math.random() * language_standard.length);
-        var y = language_standard[x]; 
-        var character_languages = character_languages + y + " ";
-    }
-    else { // exotic language generation
-        var x =  Math.floor(Math.random() * language_exotic.length);
-        var y = language_exotic[x]; 
-        var character_languages = character_languages + y + " ";
-    }
-
-    // Humans have an ability increase of 1 for all stats
-    var constitution = constitution + 1;
-    var dexterity = dexterity + 1;
-    var strength = strength + 1;
-    var intelligence = intelligence + 1;
-    var wisdom = wisdom + 1;
-    var charisma = charisma + 1;
-
-    var character_speed = 30;
-    var character_size = "Medium";
-
-    // We use the gender to determine the human name... 
-    // But first, we must determine what subrace we want to go with.
-    var y = Math.floor(Math.random() * 15); // generates number between 0-15 
-    var character_subrace = sub_human[y];
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_human_male[x][y].length);
-        var character_name = name_human_male[y][x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_human_female[x][y].length);
-        var character_name = name_human_female[x][x];
-    }
-    // Humans do not have last names generated here.
-    var character_name_last = "";
-}
-
-function dragonbornGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "breath weapon " + "damage resistance  ";
-    var strength = strength + 2;
-    var charisma = charisma + 1;
-    var character_speed = 30;
-    var character_size = "Medium";
-
-    // We use the gender to determine the dragonborn name... 
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_dragonborn_male.length);
-        var character_name = name_dragonborn_male[x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_dragonborn_female.length);
-        var character_name = name_dragonborn_female[x];
-    }
-    // Now, we determine the last name
-    var x = Math.floor(Math.random() * name_dragonborn_clan.length);
-    var character_name_last = name_dragonborn_clan[x];
-
-    // Dragonborns have a subrace! Let's generate that.
-    var x = Math.floor(Math.random() * sub_dragonborn.length);
-    var character_subrace = sub_dragonborn[x];
-}
-
-// ERROR: Forest gnomes know the minor illusion cantrip
-function gnomeGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "darkvision " + "gnome cunning ";
-    var character_languages = character_languages + "common " + "gnomish ";
-    var intelligence = intelligence + 2; // halflings have a bonus to dexterity of 2
-    var character_speed = 25;
-    var character_size = "Small";
-
-    // We use the gender to determine the halfling name... 
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_gnome_male.length);
-        var character_name = name_gnome_male[x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_gnome_female.length);
-        var character_name = name_gnome_female[x];
-    }
-    // Now, we determine the last name
-    var x = Math.floor(Math.random() * name_gnome_clan.length);
-    var character_name_last = name_gnome_clan[x];
-
-    // Gnomes have a subrace! Let's generate that.
-    var x = Math.floor(Math.random() * sub_gnome.length);
-    var character_subrace = sub_gnome[x];
-
-    if (character_subrace == "forest") {
-        var character_uniquefeatures = character_uniquefeatures + "naturally stealthy " + "speak with small animals ";
-        var dexterity = dexterity + 1;
-    }
-    else if (character_subrace == "rock") {
-        var constitution = constitution + 1;
-        var character_uniquefeatures = character_uniquefeatures + "artificer's lore " + "tinker ";
-    }
-}
-
-function halfElfGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "darkvision " + "fey ancestry " + "skill versaitility ";
-    var character_languages = character_languages + "common " + "elvish ";
-    var character_speed = 30;
-    var character_size = "Medium";
-
-    // Half-elves know a language of their choice...
-    var z = Math.floor(Math.random * 1);
-    if (z == 1) { // standard language generation
-        var x =  Math.floor(Math.random() * language_standard.length);
-        var y = language_standard[x]; 
-        var character_languages = character_languages + y + " ";
-    }
-    else { // exotic language generation
-        var x =  Math.floor(Math.random() * language_exotic.length);
-        var y = language_exotic[x]; 
-        var character_languages = character_languages + y + " ";
-    }
-
-    // We use the gender to determine the half-elves name... 
-    var z = Math.floor(Math.random() * 1); 
-    if (z == 0) { // generate a human name
-        var y = Math.floor(Math.random() * 15); // generates number between 0-15 
-        var character_subrace = sub_human[y];
-        if (character_gender == "male") {
-            var x = Math.floor(Math.random() * name_human_male[x][y].length);
-            var character_name = name_human_male[y][x];
-        }
-        else if (character_gender == "female") {
-            var x = Math.floor(Math.random() * name_human_female[x][y].length);
-            var character_name = name_human_female[x][x];
-        }
-    // Humans do not have last names generated here.
-    var character_name_last = "";
-    }
-    else { // generate an elven name
-        if (character_gender == "male") {
-            var x = Math.floor(Math.random() * name_elf_male.length);
-            var character_name = name_elf_male[x];
-        }
-        else if (character_gender == "female") {
-            var x = Math.floor(Math.random() * name_elf_family.length);
-            var character_name = name_elf_female[x];
-        }
-        // Now, we determine the last name
-        var x = Math.floor(Math.random() * name_elf_family.length);
-        var character_name_last = name_elf_family[x];
-    }
-}
-
-function halfOrcGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "darkvision " + "menacing " + "relentless endurance " + "savage attacks";
-    var character_languages = character_languages + "common " + "orc ";
-    var strength = strength + 2;
-    var constitution = constitution + 2;
-    var character_speed = 30;
-    var character_size = "Medium";
-
-
-    // Let's generate the name!
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_halforc_male.length);
-        var character_name = name_halforc_male[x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_halforc_female.length);
-        var character_name = name_halforc_female[x];
-    }
-    // Orcs do not have last names.
-    var character_name_last = "";
-}
-
-// ERROR: tieflings know the thaumaturgy cantrip
-function tieflingGeneration(character_gender, character_uniquefeatures, character_speed, character_languages, character_size, constitution, dexterity, strength, intelligence, wisdom, charisma) {
-    // Let's set the default variables that occur, regardless of subrace or gender
-    var character_uniquefeatures = character_uniquefeatures + "darkvision " + "hellish resistance " + "infernal legacy ";
-    var character_languages = character_languages + "common " + "infernal ";
-    var charisma = charisma + 2;
-    var intelligence = intelligence + 1;
-    var character_speed = 30;
-    var character_size = "Medium";
-
-
-    // Let's generate the name!
-    if (character_gender == "male") {
-        var x = Math.floor(Math.random() * name_tiefling_male.length);
-        var character_name = name_tiefling_male[x];
-    }
-    else if (character_gender == "female") {
-        var x = Math.floor(Math.random() * name_tiefling_female.length);
-        var character_name = name_tiefling_female[x];
-    }
-    // Tieflings have a virtue instead of a last name
-    var x = Math.floor(Math.random() * name_tiefling_virtue.length);
-    var character_name_last = name_tiefling_virtue[x];
+    return character_background_story;
 }
