@@ -2,67 +2,126 @@
   <head>
     <meta charset="utf-8">
     <title>DnD Character Sheets</title>
-      <link rel="stylesheet" type="text/css" href="result.css">
-      <script src="newreference.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="result.css">
+    <script src="reference.js" defer></script>
   <body>
-  <div class = "imgContainer">
-      <h1 id = "charHeader">Your Character...</h1>
+<div class="standard">
+    <div class = "imgContainer">
+        <h1 id = "charHeader">Your Character...</h1>
         <img src="knight.png" id= "charImage">
-  </div>
-<div class="personUpperContainer">
-      <h4 id = "Class">Fighter</h4>
-      <h4 id = "Specialty">Champion</h4>
-      <h4 id = "Race" >Human</h4>
-
-
-      <h4 id = "nameIdentifier">Name:</h4>
-      <h4 id = "firstName">Charles</h4>
-      <h4 id = "lastName" >Steinhart</h4>
-</div>
-  <div id="statwrapper">
+    </div>
+    <div class="wrapper">
+        <div class="capitalize">
+            <p id = "Class">Fighter</p>
+        </div>
+        <div class="capitalize">
+            <p id = "Specialty">Champion</p>
+        </div>
+        <div class="capitalize">
+            <p id = "Race">Human</p>
+        </div>
+        <div class="capitalize">
+            <h4>Name:</h4>
+        </div>
+        <div class="capitalize">
+            <p id = "firstName">Charles</p>
+        </div>
+        <div class="capitalize">
+            <p id = "lastName" >Steinhart</p>
+        </div>
+    </div>
     <h1 id="statHeader">Your Stats...</h1>
-  </div>
-  <div class="hpContainer">
-    <h4 id = "hp">Hit Points</h4>
-    <h4 id="hp-n">5</h4>
-  </div>
-    <div class="SDC">
-      <h4 id="str">Strength</h4>
-      <h4 id="dex">Dexterity</h4>
-      <h4 id="con">Constitution</h4>
+    <div class="wrapper">
+        <h4>Hit Points</h4>
+        <h4>Armor Class</h4>
+        <h4>Speed</h4>
+        <p id="hp-n">5</p>
+        <p id="ac-n">16</p>
+        <p id="speed-n">30</p>
 
-      <h4 id="str-n">18</h4>
-      <h4 id="dex-n">10</h4>
-      <h4 id="con-n">16</h4>
+
+        <h4 id="str">Strength</h4>
+        <h4 id="dex">Dexterity</h4>
+        <h4 id="con">Constitution</h4>
+
+        <p id="str-n">18</p>
+        <p id="dex-n">10</p>
+        <p id="con-n">16</p>
+
+        <h4 id="int">Intelligence</h4>
+        <h4 id="wis">Wisdom</h4>
+        <h4 id="cha">Charisma</h4>
+
+        <p id="int-n">10</p>
+        <p id="wis-n">10</p>
+        <p id="cha-n">15</p>
     </div>
+    <h1>Your Abilities...</h1>
+    <div class="wrapper">
+        <h4>Spells Known</h4>
+        <h4>Unique Features</h4>
+        <h4>Languages Known</h4>
 
-    <div class="IWC">
-      <h4 id="int">Intelligence</h4>
-      <h4 id="wis">Wisdom</h4>
-      <h4 id="cha">Charisma</h4>
-
-      <h4 id="int-n">10</h4>
-      <h4 id="wis-n">10</h4>
-      <h4 id="cha-n">15</h4>
+        <div class="scroll">
+            <div class="capitalize">
+                <p id="spells">No spells known.</p>
+            </div>
+        </div>
+        <div class="scroll">
+            <div class="capitalize">
+                <p id="features">No unique features.</p>
+            </div>
+        </div>
+        <div class="scroll">
+            <div class="capitalize">
+                <p id="languages">Common</p>
+            </div>
+        </div>
     </div>
-
-    <div class="Your Magical Abilities..."></div>
-
-    <div id="storywrapper">
-      <h1 id="storyHeader">Your Story...</h1>
-      <!-- Temporarily commented out as it doesn't load on page.
-      <div id="storyInfo">
-        <p id="charback">character</p>
-        <h4>Languages Known:</h4>
-        <p id="language">languages</p>
-        <h4>Reason for Picking Class:</h4>
-        <p id="classback">class</p>
-      </div>
-    -->
+    <h1>Your Story...</h1>
+    <div class="wrapper">
+        <div class="capitalize">
+            <h4 id="bck">Background</h4>
+        </div>
+        <h4>Reason for Picking Class</h4>
+        <h4>Alignment</h4>
+        
+        <div class="scroll">
+            <p id="bckreason">I am the way I am because I am.</p>
+        </div>
+        <div class="scroll">
+            <p id="classback">I am the way I am because I trained to be the way I am.</p>
+        </div>
+        <div class="scroll">
+            <div class="capitalize">
+                <p id="alignment">I am morally good.</p>
+            </div>
+        </div>
     </div>
-    <div class="center">
-      <button class="button button1" onClick="generateCharacter()">Randomize Character</button>
-      <button class="button button2">Save Character</button>
+    <h1>Your Equipment...</h1>
+    <div class="wrapper">
+        <h4>Weapons</h4>
+        <h4>Armor</h4>
+        <h4>Misc.</h4>
+        
+        <div class="scroll">
+            <div class="capitalize">
+                <p id="Weapons">Dagger</p>
+            </div>
+        </div>
+        <div class="scroll">
+            <div class="capitalize">
+                <p id="Armor">None</p>
+            </div>
+        </div>
+        <div class="scroll">
+            <div class="capitalize">
+                <p id="Misc">A backpack</p>
+            </div>
+        </div>
     </div>
+</div>
+    <button class="button button1" onClick="generateCharacter()">Randomize Character</button>
+    <button class="button button2">Save Character</button>
   </body>
 </html>

@@ -1,276 +1,72 @@
-body{
-    background: linear-gradient(rgba(0,0,0,1),rgba(180,0,0,0.8));
-  }
-  
-  #charHeader{
-    grid-column: 3 / span 1;
-    grid-row: 1;
-    font-size: 50px;
-    color: #ffff;
+body {
+    margin: 50px;
+    padding: 50px;
+    background: linear-gradient(rgba(0, 0, 0, 0.75), 
+    rgba(0, 0, 0, 0.75)),url(dungeonofthemadmage.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    background-size: cover;
+    font-family: sans-sans-serif;
     text-align: center;
-  }
-  
+}
 
-  #charImage {
-    grid-column: 3 / span 1;
-    grid-row: 2;
+img {
+    max-width: 100%;
+    width: 200px;
+    height: auto;
+}  
+
+.standard {
+    color: white;
+    background: #000;
+    box-sizing: border-box;
+    border-style: solid;
+    border-radius: 2%;
+    border-color: #a60314;
     text-align: center;
-    margin: auto;
-    width: 30%;
-  }
- /*
-  .charImage{
-    grid-column: 3 / span 1;
-    grid-row: 2;
-    text-align: center;
-    margin: auto;
-    width: 30%;
-  }
-  */
-  
-  .imgContainer{
+    color: #fff;
+    background: linear-gradient(rgba(100,0,0,0.8),rgba(0,0,0,1));
+    margin: 50px;
+    padding: 50px;
+}
+
+.wrapper {
     display: grid;
-    grid-template-columns: auto 500px 500px 500px auto;
-    grid-template-rows: 100px 100px;
-  }
-  
-  .personUpperContainer{
-    display: grid;
-    grid-template-columns: auto 500px 500px 500px auto;
-    grid-template-rows: 200px 200px;
-  }
-  
-  
-  
-  #Class{
-    grid-column: 2 / span 1;
-    grid-row: 1;
-    font-size: 50px;
-    color: #ffff;
-    text-align: center;
-  
-  
-  }
-  
-  #Specialty{
-    grid-column: 3 / span 1;
-    grid-row: 1;
-    font-size: 50px;
-    color:#ffff;
-    text-align: center;
-  
-  
-  }
-  
-  #Race{
-    grid-column: 4 / span 1;
-    grid-row: 1;
-    font-size: 50px;
-    color:#ffff;
-    text-align: center;
-  
-  
-  }
-  
-  #nameIdentifier{
-    grid-column: 2 / span 1;
-    grid-row: 2;
-    font-size: 50px;
-    color:#ffff;
-    text-align: center;
-  }
-  
-  #firstName{
-    grid-column: 3 / span 1;
-    grid-row: 2;
-    font-size: 50px;
-    color:#ffff;
-    text-align: center;
-  }
-  
-  #lastName{
-    grid-column: 4 / span 1;
-    grid-row: 2;
-    font-size: 50px;
-    color:#ffff;
-    text-align: center;
-  }
-  
-  #statwrapper{
-    display: grid;
-    grid-template-columns: auto 500px 500px 500px auto;
-    grid-template-rows: 200px;
-  }
-  
-  #statHeader{
-    grid-column: 3 / span 1;
-    grid-row: 1;
-    text-align: center;
-    font-size: 50px;
-    color: #ffff;
-  }
-  
-  .SDC{
-    display: grid;
-    grid-template-columns: auto 500px 500px 500px auto;
-    grid-template-rows: 100px 50px 50px;
-  }
+    grid-template-columns:repeat(3, 33%);
+    gap: 10px;
+    grid-gap:1px;
+    grid-auto-rows: minmax(100px, 33%);
+    column-gap: 40px;
+}
 
-  #hp{
-    grid-column: 2 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
 
-  #hp-n{
-    grid-column: 2 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
+.capitalize {
+    text-transform: capitalize;
+}
 
-  #str{
-    grid-column: 2 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #dex{
-    grid-column: 3 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #con{
-    grid-column: 4 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  
-  #str-n{
-    grid-column: 2 / span 1;
-    grid-row: 2;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #dex-n{
-    grid-column: 3 / span 1;
-    grid-row: 2;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #con-n{
-    grid-column: 4 / span 1;
-    grid-row: 2;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  .IWC{
-    display: grid;
-    grid-template-columns: auto 500px 500px 500px auto;
-    grid-template-rows: 100px 50px 50px;
-  }
-  
-  #int{
-    grid-column: 2 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #wis{
-    grid-column: 3 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #cha{
-    grid-column: 4 / span 1;
-    grid-row: 1;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  
-  #int-n{
-    grid-column: 2 / span 1;
-    grid-row: 2;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #wis-n{
-    grid-column: 3 / span 1;
-    grid-row: 2;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #cha-n{
-    grid-column: 4 / span 1;
-    grid-row: 2;
-    font-size: 30px;
-    color: #ffff;
-    text-align: center;
-  }
-  
-  #storywrapper{
-    display: grid;
-    grid-template-columns: auto 500px 500px 500px auto;
-    grid-template-rows: 200px;
-  }
-  
-  #storyHeader{
-    grid-column: 3 / span 1;
-    grid-row: 1;
-    text-align: center;
-    font-size: 50px;
-    color: #ffff;
-  }
+.scroll {
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+    overflow: scroll;
+}
 
-  #storyInfo {
-    grid-column: 3 / span 1;
-    grid-row: 1;
-    text-align: center;
-    font-size: 50px;
-    color: #ffff;
-  }
+.scroll::-webkit-scrollbar {
+    display:none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
 
-  .center {
-    text-align: center;
-  }
-
-  .button {
+.button {
     background-color: 	#4c1130;
     color: white;
     display: inline-block;
     cursor: pointer;
     font-size: 30px;
     font-family: sans-sans-serif;
-  }
+    padding: 50px;
+    margin: 50px;
+}
 
-  .button:hover {
+.button:hover {
     background-color: 	#7a0028;
-  }
+}
+
