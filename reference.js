@@ -157,7 +157,7 @@ var armor_heavy = ["ring mail", "chain mail", "splint", "plate"];
 
 // Equipment
 var equipment_pack = ["burglar's pack", "diplomat's pack", "dungeoneer's pack", "entertainer's pack", "explorer's pack", "priest's pack", "scholar's pack"];
-var equipment_instruments = ["bagpipes", "drum", "dulcimer", "flute", "lute", "lyre", "horn", "pan_flute", "shawm", "viol"];
+var equipment_instruments = ["bagpipes", "drum", "dulcimer", "flute", "lute", "lyre", "horn", "pan flute", "shawm", "viol"];
 var equipment_artisan = ["alchemist's supplies", "brewer's supplies", "calligrapher's supplies", "carpenter's tools", "cartographer's tool", "cobbler's tools", "cook's utensils", "glassblower's tools", "jeweler's tools", "leatherworker's tools", "mason's tools", "painter's supplies", "potter's tools", "smith's tools", "tinker's tool", "weaver's tool", "woodcarver's tools"];
 var equipment_gaming = ["dice set", "dragonchess set", "playing card set", "three-dragon ante set"];
 
