@@ -6,6 +6,8 @@ body{
   background: linear-gradient(rgba(0, 0, 0, 0.75),
   rgba(0, 0, 0, 0.75)),url(fight.jpg);
   background-size: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: sans-sans-serif;
 }
 
