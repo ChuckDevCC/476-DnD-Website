@@ -1,0 +1,79 @@
+body{
+  margin: 50px;
+  padding: 50px;
+  background: linear-gradient(rgba(0, 0, 0, 0.75),
+  rgba(0, 0, 0, 0.75)),url(character.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  background-size: cover;
+  font-family: sans-sans-serif;
+  text-align: center;
+}  
+
+.standard {
+  color: white;
+  background: #000;
+  box-sizing: border-box;
+  border-style: solid;
+  border-radius: 2%;
+  border-color: #a60314;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(rgba(100,0,0,0.8),rgba(0,0,0,1));
+  margin: 50px;
+  padding: 50px;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
+
+
+.form-inside {
+  grid-column: 2 / span 3;
+  grid-row: 2 / 3;
+  text-align: center;
+}
+
+.form-inside input {
+  width: 50%;
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+/*
+.form-container {
+  grid-column: 2 / span 3;
+  grid-row: 2 / 3;
+  color: white;
+  background: #000;
+  box-sizing: border-box;
+  border-style: solid;
+  border-radius: 2%;
+  border-color: #a60314;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(rgba(100,0,0,0.8),rgba(0,0,0,1));
+  vertical-align: baseline;
+}
+*/
+
+.button {
+  border: none;
+  outline: none;
+  margin-top: 50px;
+  height: 40px;
+  width: 40%;
+  margin-right: 20px;
+  background: #a60314;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: 	#7a0028;
+}

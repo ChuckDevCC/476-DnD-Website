@@ -2,51 +2,29 @@
 <html>
     <head>
         <title>Welcome to Character Generator.</title>
-        Add CSS later.
         <link rel="stylesheet" type="text/css" href="signup.css"/>
-		<script type="text/javascript" src="signup.js"></script>
-    </head>
-    
+		<!-- <script type="text/javascript" src="signup.js"></script> -->
+    </head> 
     <body>
-        <header>
+        <div class="standard">
             <h1>Welcome Adventurer!</h1>
-            <p>To use our generator and begin saving your characters, <br>
+            <p>To use our generators and begin saving your characters, <br/>
                 please sign up by filling out the information below!</p>
-        </header>
-        <form id="SignUp" method="post">
-            <table>
-                <tr> <!-- Email setup-->
-                    <td><label id="email_msg" class="err_msg"></label></td>
-                    <td align="right">Email: </td>
-                    <td align="left"><input type="email" name="su_email"/></td>
-                </tr>
-                <tr> <!-- Name setup -->
-                    <td><label id="name_msg" class="err_msg"></label></td>
-                    <td align="right">Name: </td>
-                    <td align="left"><input type="name" name="su_name"/></td>
-                </tr>
-                <tr> <!-- Password setup-->
-                    <td><label id="pwd_msg" class="err_msg"></label></td>
-                    <td align="right">Password: </td>
-                    <td align="left"><input type="password" name="su_pwd"/></td>
-                </tr>
-                <tr> <!-- Confirm password -->
-                    <td><label id="cpwd_msg" class="err_msg"></label></td>
-                    <td align="right">Confirm Password: </td>
-                    <td align="left"><input type="password" name="su_cpwd"/></td>
-                </tr>
-                <tr> <!-- Security question -->
-                    <td><label id="secq_msg" class="err_msg"></label></td>
-                    <td align="right">Security Question: </td>
-                    <td align="left"><input type="text" name="su_secq"/></td>
-                </tr>
-                <tr> <!-- Security answer-->
-                    <td><label id="seca_msg" class="err_msg"></label></td>
-                    <td align="right">Security Answer:: </td>
-                    <td align="left"><input type="text" name="su_seca"/></td>
-                </tr>
-            </table>
-            <input type="button" value="Submit" onclick="SignUpForm()"/>
+            <div class="form-container">
+                <div class="form-inside">
+                    <form>
+                        <input type = "text" name ="su_username" placeholder="Username">
+                        <input type = "text" name ="su_name" placeholder="Name">
+                        <input type = "text" name ="su_email" placeholder="Email">
+                        <input type = "password" name="su_password" placeholder= "Password">
+                        <input type = "password" name="su_cpassword" placeholder="Confirm Password">
+                        <input type = "text" name="su_securityq" placeholder="Security Question">
+                        <input type = "text" name="su_securitya" placeholder="Security Answer">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <button class="button button2">Signup</button>
         </form>
     </body>
 </html>
