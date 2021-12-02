@@ -4,7 +4,7 @@ body{
   margin: 0;
   padding: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.75),
-  rgba(0, 0, 0, 0.75)),url(fight.jpg);
+  rgba(0, 0, 0, 0.75)),url(pictures/fight.jpg);
   background-size: auto;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -31,9 +31,8 @@ body{
   border-radius: 2%;
   border-color: #a60314;
   text-align: center;
-  text-color: #fff;
+  color: #fff;
   background: linear-gradient(rgba(100,0,0,0.8),rgba(0,0,0,1));
-
 }
 
 .dice{
@@ -70,6 +69,7 @@ body{
   border-bottom: 1px solid #a60314;
   background: transparent;
   text-align: center;
+  color: #fff;
   margin-top: 50px;
   width: 80%;
   font-size: 25px;

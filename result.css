@@ -1,8 +1,8 @@
 body {
     margin: 50px;
     padding: 50px;
-    background: linear-gradient(rgba(0, 0, 0, 0.75), 
-    rgba(0, 0, 0, 0.75)),url(dungeonofthemadmage.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0.75)),url(pictures/dungeonofthemadmage.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100%;
@@ -18,7 +18,7 @@ img {
     margin-left: auto;
     margin-right: auto;
     display: block;
-}  
+}
 
 .standard {
     color: white;
@@ -66,10 +66,10 @@ img {
     font-size: 30px;
     font-family: sans-sans-serif;
     padding: 50px;
-    margin: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
 }
 
 .button:hover {
     background-color: 	#7a0028;
 }
-

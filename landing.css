@@ -1,0 +1,79 @@
+body{
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.75),
+  rgba(0, 0, 0, 0.75)),url(pictures/landing.jpg);
+  background-size: auto;
+  font-family: sans-sans-serif;
+}
+
+.buttonwrapper{
+  display: grid;
+  grid-template-rows: 200px 200px 500px 500px auto;
+  grid-template-columns: auto 550px 550px auto;
+}
+
+#userHolder{
+  display: grid;
+  grid-column: 2 / span 2;
+  grid-row : 2 / span 1;
+  color: #fff;
+  font-size: 60px;
+  text-align: center;
+}
+
+#quizbtn{
+  display: grid;
+  grid-column: 2 ;
+  grid-row : 3;
+  color: #ffff;
+  text-align: center;
+  font-size: 60px;
+}
+
+#rndbtn{
+  display: grid;
+  grid-column: 3 ;
+  grid-row : 3;
+  color: #ffff;
+  text-align: center;
+  font-size: 60px;
+}
+
+#charbtn{
+  display: grid;
+  grid-column: 2 ;
+  grid-row : 4;
+  color: #ffff;
+  text-align: center;
+  font-size: 60px;
+}
+
+#logbtn{
+  display: grid;
+  grid-column: 3;
+  grid-row : 4;
+  color: #ffff;
+  text-align: center;
+  font-size: 60px;
+
+
+}
+
+.btn{
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  box-shadow : 0 0.4rem 1.4rem 0 rgba(255,0,0);
+  border-color: red;
+  height: 50%;
+  width: 96%;
+  margin-left: 10%;
+
+}
+
+.btn:hover {
+  cursor: pointer;
+  box-shadow : 0 0.4rem 1.4rem 0 rgba(86,13,144);
+  transform: scale(1.02);
+  transform: transform 100ms;
+}

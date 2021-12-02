@@ -3,28 +3,72 @@
     <head>
         <title>Welcome to Character Generator.</title>
         <link rel="stylesheet" type="text/css" href="signup.css"/>
-		<!-- <script type="text/javascript" src="signup.js"></script> -->
+        <script src="recognizeInput.js" defer></script>
     </head> 
     <body>
         <div class="standard">
-            <h1>Welcome Adventurer!</h1>
-            <p>To use our generators and begin saving your characters, <br/>
-                please sign up by filling out the information below!</p>
-            <div class="form-container">
-                <div class="form-inside">
-                    <form>
-                        <input type = "text" name ="su_username" placeholder="Username">
+                <h1>Welcome Adventurer!</h1>
+                <p>To use our generators and begin saving your characters, <br/>
+                    please sign up by filling out the information below!</p>
+                    <form method="post" id="SignUp">
                         <input type = "text" name ="su_name" placeholder="Name">
+                        <br/>
+                        <br/>
                         <input type = "text" name ="su_email" placeholder="Email">
+                        <br/>
+                        <br/>
                         <input type = "password" name="su_password" placeholder= "Password">
+                        <br/>
+                        <br/>
                         <input type = "password" name="su_cpassword" placeholder="Confirm Password">
+                        <br/>
+                        <br/>
                         <input type = "text" name="su_securityq" placeholder="Security Question">
+                        <br/>
+                        <br/>
                         <input type = "text" name="su_securitya" placeholder="Security Answer">
+                        <br/>
+                        <input type="button" class="btn" value="Signup" onClick="SignUpForm()" style="border: none;
+                        outline: none;
+                        margin-top: 50px;
+                        height: 40px;
+                        width: 40%;
+                        margin-right: 20px;
+                        background: #a60314;
+                        color: #fff;
+                        font-size: 18px;
+                        border-radius: 5px;"> 
+                    <!--
+                        <div class="form-container">
+                            <div class="form-inside">
+                             PHP version of form <form action="signup.php" method="post">
+                            <form method="post" id="SignUp">
+                                    <input type = "text" name ="su_name" placeholder="Name">
+                                    <input type = "text" name ="su_email" placeholder="Email">
+                                    <input type = "password" name="su_password" placeholder= "Password">
+                                    <input type = "password" name="su_cpassword" placeholder="Confirm Password">
+                                    <input type = "text" name="su_securityq" placeholder="Security Question">
+                                    <input type = "text" name="su_securitya" placeholder="Security Answer">
+                                    <br/>
+                                    <p name="btn" onClick="SignUpForm()">Signup</p>
+                                    <!-- <input type="button" class="btn" value="Signup" onClick="SignUpForm()"> -->
+                                    <!-- 
+                                        The PHP version of this button is as follows:
+                                        <input type="submit" name="submit" value="Signup" style="border: none;
+                                            outline: none;
+                                            margin-top: 50px;
+                                            height: 40px;
+                                            width: 40%;
+                                            margin-right: 20px;
+                                            background: #a60314;
+                                            color: #fff;
+                                            font-size: 18px;
+                                            border-radius: 5px;"> -->
+                                    <!-- <button class="btn" type="Submit" onClick="return SignUpForm()">Signup</button> --> 
                     </form>
+                    <p id="err_msg"></p>
                 </div>
             </div>
         </div>
-        <button class="button button2">Signup</button>
-        </form>
     </body>
 </html>

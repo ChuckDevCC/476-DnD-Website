@@ -1,85 +1,59 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>DnD Character Sheets</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <?php
-        // VARIABLES
-        $validate = true;
-        $email_v = "/^[a-zA-Z0-9._]+@[a-z]+\.+[a-z]{2,3}$/";
-        $pword_v = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-])$/";
-        $name_v = "/^[A-Z][a-z]+$/";
+<?php
+
+// first, we must link together our "main" functions that are used across PHP files
+// include 'includes/mainfunctions.php';
+
+// this if statement waits to see if the user clicked "login"
+  if (isset($_POST["submit"])){
+    $username = $_POST["uname"];
+    $pwd = $_POST["password"];
     
-        $email = "";
-        $error= "";
+    if (emptyInputLogin($username,$pwd) != false) {
+      header("location: index.html?error=emptyinput");
+      exit();
+    }
+  loginUser($conn, $username,$pwd);
+  }
+  else{
+    header("location: index.html");
+    exit();
+  }
 
-        // LOGIN INFORMATION 
-        if (isset($_POST["submitted"])) {
-          $email = trim($_POST["email"]);
-          $password = trim($_POST["pwd"]);
+  // this function tests if the user inputted anything.
+  function emptyInputLogin($username,$pwd) {
+    $result;
+    if (empty($username) || empty($pwd)) {
+      $result = true;
+    }
+    else{
+      $result = false;
+    }
+    return $result;
+  }
 
-          // connect to server: $db = new mysqli("localhost", "username", "password");
-          if ($db->connect_error) {
-              die ("Connection failed: " . $db->connect_error);
-          }
-          $q = "select * from Users where email = '$email' AND password = '$password'";
-          $r = $db->query($q);
-          $row = $r->fetch_assoc();
-            
-          if (($email != $row["email"]) && ($password != $row["password"])) {
-            $validate = false;
-          }  
-          else {
-            $emailMatch = preg_match($email_v, $email);
-            if(($email == null) || ($email == "") || ($emailMatch == false)) {
-              $validate = false;
-            }  
-            $pswdLen = strlen($password);
-            $passwordMatch = preg_match($pword_V, $password);
-            if (($password == null) || ($password == "") || ($pswdLen < 8) || ($passwordMatch == false)) {
-                $validate = false;
-            }
-          }
-          if ($validate == true) { // if all the conditions work, we can log the client in
-            $q = "SELECT name FROM Users WHERE email = $email";
-            $use = $db->query($q); // grabs the name of the user based off the email address
-            session_start();
-            $_SESSION["name"] = $row["name"];
-            $_SESSION["email"] = $row["use"]; 
-            // this will later redirect client to the homepage: header("Location: homepage.php");
-            $db->close();
-            exit();
-            }
-          else {
-            $error = "The email/password combination was incorrect. Login failed.";
-            $db->close();
-          }
-      }
+  // this function tests to see if the user's login exists in the system and if it is valid.
+  function loginUser($conn, $username, $pwd) {
+    // $db = connection();
+    $db = new mysqli("localhost","sandin2c","13370798","sandin2c");
+    if ($db->connect_error) {
+      die ("Connection failed: " . $db->connect_error);
+    }
 
-    ?>
-  </head>
-  <body>
-    <div class="form-container">
-      <div class="loginbox">
-        <img src="dice.jpg" class= "dice">
-        <h1 id="welcome">LOGIN BELOW</h1>
-        <form id="login" method="post">
-        <input type = "text" name ="email" placeholder="Email">
-        <input type = "password" name="pword" placeholder= "Password">
-        <input type = "submit" name="submitted" value="Login">
-        <a href="signup.php">
-          <input type = "submit" name="" value="Create Your Account">
-        </a>
-        <a href="passwordreset.php">
-          <input type = "submit" name="" value="Forgot Your Password?">
-        </form>
-      </div>
-      <div class="credbutton">
-        <ul>
-          <li><a href="credits.html">Credits</a></li>
-        </ul>
-      </div>
-    </div>
-  </body>
-</html>
+    $q1 = "SELECT * FROM user WHERE user_name = '$username' AND user_password = '$pwd'";
+    $r1 = $db->query($q1);
+
+    if ($r1->num_rows > 0){
+      header("Location: landing.php");
+      session_start();
+      $_SESSION["username"] = $username;
+      $db->close();
+      exit();
+    }
+    else{
+      header("Location: index.html?error=badform");
+      $db->close();
+      exit();
+    }
+
+  }
+?>

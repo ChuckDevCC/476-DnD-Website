@@ -1,9 +1,28 @@
 body{
-
-background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75))
-,url(ice.jpg);
+  margin: 50px;
+  padding: 50px;
+  background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(pictures/ice.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100%;
+  background-size: cover;
+  font-family: sans-sans-serif;
+  text-align: center;
 }
 
+.standard {
+  color: white;
+  background: #000;
+  box-sizing: border-box;
+  border-style: solid;
+  border-radius: 2%;
+  border-color: #a60314;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(rgba(0,0,100,1),rgba(0,0,0,1));
+}
+
+/*
 .fyp-box{
   width: 650px;
   height: 400px;
@@ -28,12 +47,13 @@ background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75))
   font-size: 45px;
 }
 
-.fyp-box input[type="text"], input[type="password"]
+.fyp-box input[type="text"]
 {
   border: none;
   border-bottom: 1px solid #003b8f;
   background: transparent;
   text-align: center;
+  color: #fff;
   margin-top: 5px;
   width: 80%;
   margin-left: 62px;
@@ -56,3 +76,5 @@ background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75))
   left: 25%;
   width: 50%;
 }
+
+*/

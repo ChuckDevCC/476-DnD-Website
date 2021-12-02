@@ -1,44 +1,6 @@
-// TABLE OF CONTENTS
-/*
-Since linking a Javascript file to another Javascript file is complicated, we will be combining everything here.
-    - Line 40: information from the books to aid in generation, starting with the RACES section
-    - Line 359: the generation functions, starting with the "generateCharacter()" function
-*/
 
-// ----------------------------- REFERENCE SECTION -----------------------------
-
-/*
-This section of code has information from the books to allow for character creation.
-    NOTES
-        - Currently not compatible with child characters.
-        - Names are from Xanathar's Guide to Everything.
-        - Half-elfs currently do not have any names associated with them. Generate a human or elf name.
-        - Humans do not have last names at this time. Xanathar's Guide to Everything only has first names.
-        - Feats with prerequisites:
-            - Defensive Duelist requires dexterity 13 or higher.
-            - Grappler requires strength 13 or higher.
-            - Heavily armored requires a proficiency with medium armor.
-            - Heavy armor master requires a proficiency with heavy armor.
-            - Inspiring leader requires charisma 13 or higher.
-            - Meidum armor master requires a profiency with medium armor.
-            - Ritual caster requires intelligence or wisdom of 13 or higher.
-            - Skulker requires a dexterity of 13 or higher.
-            Spell sniper requires the ability to cast at least one spell.
-            War Caster requires the ablitity to cast at least one spell.
-            - Eldritch Adept is not allowed unless the player has spellcasting or pact magic feature.
-            - Fighting Intiate requires profiency with a martial weapon.
-            - Metamagic Adept requires spellcasting or pact magic features.
-
-    INCLUDES INFORMATION FROM:
-        - Player's Handbook
-        - Xanthar's Guide to Everything
-        - Tasha's Cauldron of Everything
-*/
-
-// -------------------------------------
-
-/* RACES */
-
+let myCookie = document.cookie;
+var alignment = ["Chaotic Evil", "Neutral Evil", "Lawful Evil", "Chaotic Neutral", "True Neutral", "Lawful Neutral", "Chaotic Good", "Neutral Good", "Lawful Good"];
 // 9 races from Player's Handbook
 var race_option = ["dwarf", "elf", "halfling", "human", "dragonborn", "gnome", "half-elf", "half-orc", "tiefling"];
 // 2 subraces for dwarves
@@ -171,7 +133,6 @@ var vehicle_waterborne = ["galley", "keelboat", "longsoap", "rowboat", "sailing_
 var background = ["acolyte", "charlatan", "criminal", "entertainer", "folk hero", "guild artisan", "hermit", "noble", "outlander", "sage", "sailor", "soldier", "urchin"];
 
 // Alignments
-var alignment = ["chaotic evil", "neutral evil", "lawful evil", "chaotic neutral", "neutral", "lawful neutral", "chaotic good", "neutral good", "lawful good"];
 
 // Reasons for becoming a [background]
 var reason_acolyte = ["I ran away from home at an early age and found refuge in a temple.", "My family gave me to a temple, since they were unable or unwilling to care for me.", "I grew up in a household with strong religious convictions. Entering the service of one or more gods seemed natural", "An impassioned sermon struck a chord deep in my soul and moved me to serve the faith.", "I followed a childhood friend, a respected acquintance, or someone I loved into religious service.", "After encoutering a true servant of the gods, I was so inspired that I immediately entered the service of a religious group."];
@@ -338,21 +299,49 @@ var feat_gnome = ["fade away", "squat nimbleness"];
 var feat_tiefling = ["flames of phlegethos", "infernal constitution"];
 var feat_orc_half = ["orcish fury", "prodigy"];
 var feat_human = ["prodigy"];
+var charClass = document.getElementById("Class");
+charClass.innerHTML = capitalizeFirstLetter(getCookie("class"));
 
-// -------------------------------------
+var charRace = document.getElementById("Race");
+charRace.innerHTML = capitalizeFirstLetter(getCookie("race"));
 
-/* Generation Functions */
+var charLnC = document.getElementById("alignment");
+charLnC.innerHTML = capitalizeFirstLetter(getCookie("lnc"));
 
-/*
-NOTES:
-    - Currently does not take into account proficincies.
-    - Equipment is based off of recommended equipement for the class.
+generateCharacter();
 
-Possible future features:
-    - Have code that prevents duplicate results for spells and languages.
-    - Generate skills.
-    - Generate equipment based off of background and take into account "any martial melee weapon".
-*/
+
+
+//Testing cookie stuff.
+// no use for this block yet.
+/*btnSave.addEventListener("click", function(){
+    alert(myCookie);
+    var race = getCookie("race");
+    alert(race);
+    document.cookie = "class=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    document.cookie = "race=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+    document.cookie = "lnc=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+}); */
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 function generateCharacter() {
     /*
@@ -415,9 +404,12 @@ function generateCharacter() {
     var z;
 
     // First, let's generate the character's race
-    x = Math.floor(Math.random() * race_option.length);
+    //x = Math.floor(Math.random() * race_option.length);
+    
+    x = race_option.indexOf(getCookie("race"));
+    
     var character_race = race_option[x];
-
+    
     // Next, let's generate the character's gender
     var x = Math.floor(Math.random() * 1);
     if (x == 0) {
@@ -461,7 +453,8 @@ function generateCharacter() {
 
 
    // Let's generate the character's class
-    x = Math.floor(Math.random() * class_option.length);
+   // x = Math.floor(Math.random() * class_option.length);
+   x = class_option.indexOf(getCookie("class"));
     character_class = class_option[x];
 
     // Why did the character pick their class? Let's find out.
@@ -763,7 +756,6 @@ function generateCharacter() {
         charisma = charisma + 1;
         character_speed = 30;
         character_size = "Medium";
-        character_languages = character_languages + "draconic<br/>" + "common<br/>";
 
         // We use the gender to determine the dragonborn name...
         if (character_gender == "male") {
@@ -1361,7 +1353,8 @@ function generateCharacter() {
     }
 
     // Finally, let's create the alignment.
-    x = Math.floor(Math.random() * alignment.length);
+   // x = Math.floor(Math.random() * alignment.length);
+   x = alignment.indexOf(getCookie("lnc"));
     character_alignment = alignment[x];
 
     /* PRINTING SECTION */
@@ -1670,7 +1663,7 @@ function backgroundReasoning(character_background, character_background_story, x
         x = Math.floor(Math.random() * reason_folkhero.length);
         character_background_story = reason_folkhero[x];
     }
-    else if (character_background == "guild artisan") {
+    else if (character_background == "guild_artisan") {
         x = Math.floor(Math.random() * reason_guildartisan.length);
         character_background_story = reason_guildartisan[x];
     }
@@ -1705,6 +1698,7 @@ function backgroundReasoning(character_background, character_background_story, x
     return character_background_story;
 }
 
+
 function classSpecialty(character_class, character_class_specialty, x) {
     if (character_class == "warlock") {
         x = Math.floor(Math.random() * warlock_patron.length);
@@ -1726,5 +1720,10 @@ function classSpecialty(character_class, character_class_specialty, x) {
         x = Math.floor(Math.random() * cleric_domain.length);
         character_class_specialty = cleric_domain[x];
     }
+    
     return character_class_specialty;
 }
+
+document.cookie = "class=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+document.cookie = "race=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+document.cookie = "lnc=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
